@@ -63,6 +63,18 @@ Eorume is an Android app made for anyone who loves perfumes. Whether you’re a 
 
 ---
 
+## Summary
+
+- Implemented MVVM architecture for clear separation of concerns.
+
+- Built offline-capable Room database with robust filtering.
+
+- Integrated Hilt for dependency injection to simplify architecture.
+
+- Developed smooth UI for seamless navigation and user experience.
+
+- Practiced Kotlin coroutines for efficient asynchronous operations.
+
 ## Getting Started
 
 ### Prerequisites
