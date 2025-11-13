@@ -3,8 +3,8 @@ package com.example.app.data.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.app.data.dao.converters.BloomTimeConverter
-import com.example.app.data.dao.converters.PlantTypeConverter
+import com.example.app.data.dao.converters.StrengthTypeConverter
+import com.example.app.data.dao.converters.PerfumeTypeConverter
 import com.example.app.data.dao.PerfumeDao
 import com.example.app.data.dao.models.Perfume
 
@@ -12,7 +12,7 @@ import com.example.app.data.dao.models.Perfume
     entities = [Perfume::class],
     version = 4
 )
-@TypeConverters(PlantTypeConverter::class, BloomTimeConverter::class)
-abstract class PlantDatabase: RoomDatabase() {
+@TypeConverters(PerfumeTypeConverter::class, StrengthTypeConverter::class)
+abstract class Database: RoomDatabase() {
     abstract val perfumeDao: PerfumeDao
 }

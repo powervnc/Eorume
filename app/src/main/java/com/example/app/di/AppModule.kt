@@ -2,8 +2,8 @@ package com.example.app.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.app.data.dao.PlantDao
-import com.example.app.data.database.PlantDatabase
+import com.example.app.data.dao.PerfumeDao
+import com.example.app.data.database.Database
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,11 +16,11 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext context: Context): PlantDatabase {
+    fun provideDatabase(@ApplicationContext context: Context): Database {
          return Room.databaseBuilder(
              context,
-             PlantDatabase::class.java,
-             "plant_database"
+             Database::class.java,
+             "perfume.database"
          )
              .allowMainThreadQueries() // optional, remove for production
              .fallbackToDestructiveMigration()
@@ -30,6 +30,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePlantDao(database: PlantDatabase): PlantDao = database.plantDao
+    fun providePerfumeDao(database: Database): PerfumeDao = database.perfumeDao
 
 }

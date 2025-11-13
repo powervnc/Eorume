@@ -1,5 +1,8 @@
 package com.example.app.data.dao.models
 
-enum class BloomTime{
-    WINTER, SPRING, SUMMER, AUTUMN, VARIES
+enum class ScentStrength{
+    LIGHT,
+    MODERATE,
+    STRONG,
+    INTENSE
 }

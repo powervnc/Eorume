@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,22 +17,29 @@ import androidx.compose.ui.unit.dp
 import com.example.app.ui.components.Text.MediumText.MediumText20
 import com.example.app.ui.components.Text.MediumText.MediumText24
 
-
 @Composable
-fun Header(title:String, description:String) {
-    val background = Color.White
-    val textColor = Color.Black
-    Column(horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.spacedBy(5.dp),
-        modifier = Modifier.fillMaxWidth().background(background).padding(top = 8.dp,start=18.dp)) {
-        MediumText24(text = title, colorText = textColor)
-        MediumText20(text = description, colorText = textColor)
-        Spacer(modifier = Modifier.height(5.dp))
-    }
+fun Header(title: String, description: String) {
+    val background = Color(0xFFB99CFF)
+    val titleColor = Color.White                  //
+    val descriptionColor = Color.White.copy(alpha = 0.85f)
 
+    Column(
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.spacedBy(2.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(background)
+            .statusBarsPadding()
+            .padding(top = 12.dp, start = 10.dp, bottom = 10.dp)
+    ) {
+        MediumText24(text = title, colorText = titleColor)
+        Spacer(modifier = Modifier.height(2.dp))
+        MediumText20(text = description, colorText = descriptionColor)
+    }
 }
+
 @Preview
 @Composable
-fun HeaderPreview(){
+fun HeaderPreview() {
     Header("Your flowers", "Admire your flowers")
 }

@@ -1,5 +1,11 @@
 package com.example.app.data.dao.models
 
-enum class PlantType{
-    ANNUALS, PERENNIALS, BIENNIALS
+enum class FragranceType{
+    FLORAL,
+    CITRUS,
+    WOODY,
+    ORIENTAL,
+    GOURMAND,
+    AQUATIC,
+    GREEN
 }

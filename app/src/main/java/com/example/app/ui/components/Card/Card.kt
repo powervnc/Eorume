@@ -23,12 +23,12 @@ import com.example.app.ui.theme.Purple40
 fun Card(
     name: String = "NAME",
     botanicalName: String = "BOTANICAL NAME",
-    plantType: String = "Plant type",
-    bloomTime: String = "Bloom time",
+    perfumeType: String = "Perfume type",
+    strengthType: String = "Bloom time",
     meaning: String = "meaning...",
     isFavorite: Boolean,
-    onDeletePlant: () -> Unit,
-    onEditPlant: () -> Unit,
+    onDeletePerfume: () -> Unit,
+    onEditPerfume: () -> Unit,
     onToggleFavorite : () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -51,13 +51,13 @@ fun Card(
             // TYPE label + value
             Column() {
                 MediumText20("TYPE", Color.Black)
-                MediumText20(plantType, Purple40)
+                MediumText20(perfumeType, Purple40)
             }
 
             // WHEN label + value
             Column(horizontalAlignment = Alignment.End) {
                 MediumText20("WHEN", Color.Black)
-                MediumText20(bloomTime, Purple40)
+                MediumText20(strengthType, Purple40)
             }
         }
         //Spacer(modifier = Modifier.height(10.dp))
@@ -69,12 +69,12 @@ fun Card(
             CustomButton(
                 text="EDIT",
                 backgroundColor = Color.Black,
-                onClick = onEditPlant,
+                onClick = onEditPerfume,
                 modifier = Modifier.weight(0.4f),
 
             )
             Spacer(modifier = Modifier.weight(0.09f))
-            CustomButton(text="DELETE", textColor=Color.White, backgroundColor = Color.Black, onClick = onDeletePlant , modifier = Modifier.weight(0.4f))
+            CustomButton(text="DELETE", textColor=Color.White, backgroundColor = Color.Black, onClick = onDeletePerfume , modifier = Modifier.weight(0.4f))
 
         }
 

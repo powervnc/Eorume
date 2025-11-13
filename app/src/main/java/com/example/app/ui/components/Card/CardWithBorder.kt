@@ -6,7 +6,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,8 +24,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.app.R
-import com.example.app.ui.theme.Purple
-import com.example.app.ui.theme.Purple40
 import com.example.app.ui.theme.Purple80
 
 
@@ -34,12 +31,12 @@ import com.example.app.ui.theme.Purple80
 fun CardWithBorder(
     name: String,
     botanicalName: String,
-    plantType: String,
+    perfumeType: String,
     bloomTime: String,
     meaning: String,
     isFavorite: Boolean,
-    onDeletePlant: () -> Unit,
-    onEditPlant: () -> Unit,
+    onDeletePerfume: () -> Unit,
+    onEditPerfume: () -> Unit,
     onToggleFavorite: () -> Unit,
 ) {
     Box(modifier = Modifier.border( width = 2.dp, color = Color.Black).fillMaxWidth().background(
@@ -56,12 +53,12 @@ fun CardWithBorder(
         Card(
             name = name,
             botanicalName = botanicalName,
-            plantType = plantType,
-            bloomTime = bloomTime,
+            perfumeType = perfumeType,
+            strengthType = bloomTime,
             meaning = meaning,
             isFavorite = isFavorite,
-            onDeletePlant = onDeletePlant,
-            onEditPlant = onEditPlant,
+            onDeletePerfume = onDeletePerfume,
+            onEditPerfume = onEditPerfume,
             onToggleFavorite = onToggleFavorite,
             modifier = Modifier
                 .fillMaxWidth(0.88f)
@@ -91,11 +88,11 @@ fun PreviewCardWithBorder() {
             name = "Flower",
             botanicalName = "Plany",
             bloomTime = "winter",
-            plantType = "perena",
+            perfumeType = "perena",
             meaning = "love, passion",
             isFavorite = true,
-            onDeletePlant = {},
-            onEditPlant = {},
+            onDeletePerfume = {},
+            onEditPerfume = {},
             onToggleFavorite = {},
 
         )

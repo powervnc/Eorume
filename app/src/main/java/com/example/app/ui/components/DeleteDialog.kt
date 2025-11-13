@@ -18,17 +18,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.app.data.dao.models.Plant
+import com.example.app.data.dao.models.Perfume
 import com.example.app.ui.components.Text.MediumText.MediumText20
 
 @Composable
 fun DeleteBirdDialog(
     showDialog: Boolean,
-    plantToDelete: Plant?,
-    onDeleteConfirmed: (Plant) -> Unit,
+    perfumeToDelete: Perfume?,
+    onDeleteConfirmed: (Perfume) -> Unit,
     onDismiss: () -> Unit
 ) {
-    if (showDialog && plantToDelete != null) {
+    if (showDialog && perfumeToDelete != null) {
         // Main dialog box container
         Box(
             modifier = Modifier
@@ -49,7 +49,7 @@ fun DeleteBirdDialog(
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
                     MediumText20(
-                        text = "ARE YOU SURE YOU WANT TO DELETE ${plantToDelete.name.uppercase()}?",
+                        text = "ARE YOU SURE YOU WANT TO DELETE ${perfumeToDelete.name.uppercase()}?",
                         colorText = Color.White,
                     )
                     Row(
@@ -68,7 +68,7 @@ fun DeleteBirdDialog(
                             text = "DELETE",
                             backgroundColor = Color(0xFFFA7298),
                             onClick = {
-                                onDeleteConfirmed(plantToDelete)
+                                onDeleteConfirmed(perfumeToDelete)
                                 onDismiss()
                             },
                             modifier = Modifier.width(250.dp),

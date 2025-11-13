@@ -3,10 +3,10 @@ package com.example.app.data.dao.converters
 import androidx.room.TypeConverter
 import com.example.app.data.dao.models.ScentStrength
 
-class BloomTimeConverter {
+class StrengthTypeConverter {
     @TypeConverter
-    fun fromStringToBloomTime(bloomTime: String): ScentStrength {
-        return  ScentStrength.valueOf(bloomTime)
+    fun fromStringToBloomTime(strengthType: String): ScentStrength {
+        return  ScentStrength.valueOf(strengthType)
     }
 
     @TypeConverter

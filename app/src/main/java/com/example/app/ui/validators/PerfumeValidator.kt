@@ -2,7 +2,7 @@ package com.example.app.ui.validators
 
 import com.example.app.data.dao.models.Perfume
 
-class PlantValidator {
+class PerfumeValidator {
 
     private val maxNameLength = 30
     private val maxOfficialNameLength = 50

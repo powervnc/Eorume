@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -19,9 +18,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.app.data.dao.models.BloomTime
-import com.example.app.data.dao.models.Plant
-import com.example.app.data.dao.models.PlantType
+import com.example.app.data.dao.models.ScentStrength
+import com.example.app.data.dao.models.Perfume
+import com.example.app.data.dao.models.FragranceType
 import com.example.app.ui.components.Button.CuteBloomButton
 import com.example.app.ui.components.Button.CuteTypeButton
 import com.example.app.ui.components.Card.CardWithBorder
@@ -30,19 +29,19 @@ import com.example.app.ui.components.FormsAndFields.CustomTextField
 @Composable
 fun CardList(
     modifier: Modifier = Modifier,
-    list: List<Plant>,
-    onDeletePlant: (Plant) -> Unit,
-    onEditPlant: (Int) -> Unit,
-    onToggleFavorite: (Plant) -> Unit
+    list: List<Perfume>,
+    onDeletePerfume: (Perfume) -> Unit,
+    onEditPerfume: (Int) -> Unit,
+    onToggleFavorite: (Perfume) -> Unit
 ) {
-    val bloomTimes = listOf("All") + BloomTime.entries.map { it.name }
-    var selectedBloom by remember { mutableStateOf("All") }
+    val strengthTypes = listOf("All") + ScentStrength.entries.map { it.name }
+    var selectedStrength by remember { mutableStateOf("All") }
 
-    val plantTypes = listOf("All") + PlantType.entries.map { it.name }
+    val fragranceTypes = listOf("All") + FragranceType.entries.map { it.name }
     var selectedType by remember { mutableStateOf("All") }
 
     var showDialog by remember { mutableStateOf(false) }
-    var plantToDelete by remember { mutableStateOf<Plant?>(null) }
+    var perfumeToDelete by remember { mutableStateOf<Perfume?>(null) }
     var searchText by remember { mutableStateOf("") }
 
     var filtersVisible by remember { mutableStateOf(false) }
@@ -54,6 +53,7 @@ fun CardList(
     ) {
         CustomTextField(
             value = searchText,
+            includeLabel = false,
             onValueChange = { searchText = it },
             labelText = "Search by name",
             placeholder = "name"
@@ -78,18 +78,17 @@ fun CardList(
                     verticalArrangement = Arrangement.spacedBy(6.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    items(plantTypes.size) { index ->
-                        val plantType = plantTypes[index]
-                        val displayText = when (plantType) {
-                            "PERENNIALS" -> "Per."
-                            "ANNUALS" -> "Ann."
-                            "BIENNIALS" -> "Bien."
-                            else -> plantType
+                    items(fragranceTypes.size) { index ->
+                        val perfumeType = fragranceTypes[index]
+                        val displayText = when (perfumeType) {
+                            "ORIENTAL" -> "ORIENT."
+                            "GOURMAND" -> "GOUR."
+                            else -> perfumeType
                         }
                         CuteTypeButton(
                             text = displayText,
-                            onClick = { selectedType = plantType},
-                            selected = selectedType == plantType
+                            onClick = { selectedType = perfumeType},
+                            selected = selectedType == perfumeType
                         )
                     }
                 }
@@ -99,12 +98,12 @@ fun CardList(
                     verticalArrangement = Arrangement.spacedBy(6.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    items(bloomTimes.size) { index ->
-                        val displayText = bloomTimes[index]
+                    items(strengthTypes.size) { index ->
+                        val displayText = strengthTypes[index]
                         CuteBloomButton(
                             text = displayText,
-                            onClick = { selectedBloom = displayText },
-                            selected = selectedBloom == displayText
+                            onClick = { selectedStrength = displayText },
+                            selected = selectedStrength == displayText
                         )
                     }
                 }
@@ -120,34 +119,35 @@ fun CardList(
             items(
                 list.filter {
                     it.name.contains(searchText, ignoreCase = true) &&
-                            (selectedBloom == "All" || it.bloomTime.name == selectedBloom) &&
+                            (selectedStrength == "All" || it.scentStrength.name == selectedStrength) &&
                             (selectedType == "All" || it.type.name == selectedType)
                 }
-            ) { plant ->
+            ) { perfume ->
                 CardWithBorder(
-                    name = plant.name,
-                    botanicalName = plant.biologicalName,
-                    plantType = plant.type.name,
-                    bloomTime = plant.bloomTime.name,
-                    meaning = plant.meaning,
-                    isFavorite = plant.favourite,
-                    onDeletePlant = {
-                        Log.d("Test", "Delete clicked for ${plant.name}")
-                        plantToDelete = plant
-                        showDialog = true
+                    name = perfume.name,
+                    botanicalName = perfume.officialName,
+                    perfumeType = perfume.type.name,
+                    bloomTime = perfume.scentStrength.name,
+                    meaning = perfume.meaning,
+                    isFavorite = perfume.favourite,
+                    onDeletePerfume = {
+                        perfumeToDelete = perfume
+                        showDialog = false
                     },
-                    onEditPlant = { onEditPlant(plant.id) },
-                    onToggleFavorite = { onToggleFavorite(plant) }
+                    onEditPerfume = { onEditPerfume(perfume.id) },
+                    onToggleFavorite = { onToggleFavorite(perfume) }
                 )
             }
         }
 
         DeleteBirdDialog(
             showDialog = showDialog,
-            plantToDelete = plantToDelete,
-            onDeleteConfirmed = { plant ->
-                onDeletePlant(plant)
-                showDialog = false
+            perfumeToDelete = perfumeToDelete,
+            onDeleteConfirmed = { perfume ->
+
+                    onDeletePerfume(perfume)
+                    showDialog = true
+
             },
             onDismiss = { showDialog = false }
         )

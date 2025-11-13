@@ -4,39 +4,39 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
-import com.example.app.data.dao.models.Plant
+import com.example.app.data.dao.models.Perfume
 
 import kotlinx.coroutines.flow.Flow
 @Dao
-interface PlantDao {
+interface PerfumeDao {
 
-    @Query("Select * from plant order by name asc")
-    fun getPlants(): Flow<List<Plant>>
+    @Query("Select * from perfume order by name asc")
+    fun getPerfumes(): Flow<List<Perfume>>
 
-    @Query("Select * from plant where id = :id")
-    fun getPlantById(id: Int): Flow<List<Plant>>
+    @Query("Select * from perfume where id = :id")
+    fun getPlantById(id: Int): Flow<List<Perfume>>
 
     @Delete
-    suspend fun deletePlant(plant: Plant)
+    suspend fun deletePerfume(perfume: Perfume)
 
     @Upsert
-    suspend fun addPlant(plant: Plant)
+    suspend fun addPerfume(perfume: Perfume)
 
-    @Query("SELECT * FROM plant WHERE favourite = 1")
-    fun getFavoritePlants(): List<Plant>
+    @Query("SELECT * FROM perfume WHERE favourite = 1")
+    fun getFavoritePlants(): List<Perfume>
 
     /// for future functionality
-    @Query("Select * from plant order by name asc")
-    fun getPlantsOrderedByName(): Flow<List<Plant>>
+    @Query("Select * from perfume order by name asc")
+    fun getPerfumesOrderedByName(): Flow<List<Perfume>>
 
-    @Query("Select * from plant order by biologicalName asc")
-    fun getPlantsOrderedByScientificName(): Flow<List<Plant>>
+    @Query("Select * from perfume order by officialName asc")
+    fun getPerfumesOrderedByScientificName(): Flow<List<Perfume>>
 
-    @Query("Select * from plant where type = :typePlant order by name asc")
-    fun getPlantsByType(typePlant: String): Flow<List<Plant>>
+    @Query("Select * from perfume where type = :type order by name asc")
+    fun getPerfumesByType(type: String): Flow<List<Perfume>>
 
-    @Query("Select * from plant where scentStrength = :bloomTime order by name asc")
-    fun getPlantsByBloomTime(bloomTime: String): Flow<List<Plant>>
+    @Query("Select * from perfume where scentStrength = :scentStrength order by name asc")
+    fun getPerfumesByScentStrength(scentStrength: String): Flow<List<Perfume>>
 
 
 }

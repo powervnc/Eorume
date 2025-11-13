@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.app.ui.theme.LightPink
+import com.example.app.ui.theme.Purple40
 import com.example.app.ui.theme.Purple80
 
 
@@ -24,7 +25,7 @@ fun BottomNavigationBar(navController: NavHostController) {
 
     NavigationBar(
         modifier = Modifier.height(80.dp),
-        containerColor = Purple80,
+        containerColor = Color(0xFFDDD0FF)
     ) {
 
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -45,10 +46,11 @@ fun BottomNavigationBar(navController: NavHostController) {
                 alwaysShowLabel = false,
 
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Color.Black, // Icon color when selected
-                    unselectedIconColor = Color.Black, // Icon color when not selected
-                    selectedTextColor = Color.Black, // Label color when selected
-                    indicatorColor = Color.White // Highlight color for selected item
+                    selectedIconColor = Color(0xFF1A0050),     // dark purple, visible on light background
+                    unselectedIconColor = Color(0xFF5C3D99),   // medium purple for unselected
+                    selectedTextColor = Color(0xFF1A0050),     // match icon color
+                    unselectedTextColor = Color(0xFF5C3D99),   // match icon color
+                    indicatorColor = Color(0xFFB99CFF)         // subtle highlight behind selected item
                 )
             )
         }

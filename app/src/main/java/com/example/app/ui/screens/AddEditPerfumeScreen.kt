@@ -9,11 +9,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.app.ui.components.FormsAndFields.CustomForm
 
 @Composable
-fun AddEditPlantScreen(
+fun AddEditPerfumeScreen(
     text: String,
     subText: String,
     buttonText: String,

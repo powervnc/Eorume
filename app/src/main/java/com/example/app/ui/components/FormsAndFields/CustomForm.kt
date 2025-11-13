@@ -19,37 +19,37 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.app.data.dao.models.BloomTime
+import com.example.app.data.dao.models.ScentStrength
 import com.example.app.data.dao.models.FormState
-import com.example.app.data.dao.models.Plant
-import com.example.app.data.dao.models.PlantType
+import com.example.app.data.dao.models.Perfume
+import com.example.app.data.dao.models.FragranceType
 import com.example.app.ui.components.CustomButton
 import com.example.app.ui.components.Select
 import com.example.app.ui.components.Text.MediumText.MediumText20
-import com.example.app.ui.validators.PlantValidator
+import com.example.app.ui.validators.PerfumeValidator
 
 //@Preview(showBackground = true)
 @Composable
-fun CustomForm(existingPlant: Plant? = null, buttonText: String, onSubmit: (Plant) -> Unit) {
+fun CustomForm(existingPerfume: Perfume? = null, buttonText: String, onSubmit: (Perfume) -> Unit) {
     var enabled by remember {
         mutableStateOf(true)
     }
-    var plantFormState by remember {
+    var perfumeFormState by remember {
         mutableStateOf(
             FormState(
-                name = existingPlant?.name ?: "",
-                biologicalName = existingPlant?.biologicalName ?: "",
-                type = existingPlant?.type ?: PlantType.ANNUALS,
-                bloomTime = existingPlant?.bloomTime ?: BloomTime.VARIES,
-                meaning = existingPlant?.meaning ?: ""
+                name = existingPerfume?.name ?: "",
+                biologicalName = existingPerfume?.officialName ?: "",
+                type = existingPerfume?.type ?: FragranceType.FLORAL,
+                scentStrength = existingPerfume?.scentStrength ?: ScentStrength.LIGHT,
+                meaning = existingPerfume?.meaning ?: ""
             )
         )
     }
 
-    val validator = PlantValidator()
+    val validator = PerfumeValidator()
     var validationErrors by remember { mutableStateOf<List<String>>(emptyList()) }
-    val typesList: List<String> = PlantType.entries.map { p -> p.name }
-    val bloomTimeList: List<String> = BloomTime.entries.map { p -> p.name }
+    val typesList: List<String> = FragranceType.entries.map { p -> p.name }
+    val bloomTimeList: List<String> = ScentStrength.entries.map { p -> p.name }
     Column(
         modifier = Modifier
             .fillMaxSize().
@@ -61,41 +61,41 @@ fun CustomForm(existingPlant: Plant? = null, buttonText: String, onSubmit: (Plan
         CustomTextField(
             placeholder = "Type...",
             labelText = "NAME",
-            value = plantFormState.name,
+            value = perfumeFormState.name,
             onValueChange = { newName ->
-                plantFormState=plantFormState.copy(name = newName)
+                perfumeFormState=perfumeFormState.copy(name = newName)
             })
         CustomTextField(
             placeholder = "Type...",
-            labelText = "BOTANICAL NAME",
-            value = plantFormState.biologicalName,
+            labelText = "OFFICIAL NAME",
+            value = perfumeFormState.biologicalName,
             onValueChange = { newBotanicalName ->
-                plantFormState=plantFormState.copy(biologicalName = newBotanicalName)
+                perfumeFormState=perfumeFormState.copy(biologicalName = newBotanicalName)
             })
         Row {
             Select(
-                selectedValue = plantFormState.type.name,
+                selectedValue = perfumeFormState.type.name,
                 values = typesList,
-                selectLabel = "PLANT TYPE",
+                selectLabel = "TYPE",
                 modifier = Modifier.weight(1f),
-                onValueChange = { newPlantType ->
-                    plantFormState=plantFormState.copy(type=  PlantType.valueOf(newPlantType))
+                onValueChange = { newPerfumeType ->
+                    perfumeFormState=perfumeFormState.copy(type=  FragranceType.valueOf(newPerfumeType))
 
                 }
             )
             Spacer(Modifier.width(40.dp))
             Select(
-                selectedValue = plantFormState.bloomTime.name,
+                selectedValue = perfumeFormState.scentStrength.name,
                 values = bloomTimeList,
-                selectLabel = "BLOOM TIME",
+                selectLabel = "STRENGTH",
                 modifier = Modifier.weight(1f),
                 onValueChange = { newBloomTime ->
-                    plantFormState=plantFormState.copy(bloomTime =  BloomTime.valueOf(newBloomTime))
+                    perfumeFormState=perfumeFormState.copy(scentStrength =  ScentStrength.valueOf(newBloomTime))
                 }
             )
 
         }
-        TextArea(plantFormState.meaning, { newMeaning ->plantFormState= plantFormState.copy(meaning = newMeaning) })
+        TextArea(perfumeFormState.meaning, { newMeaning ->perfumeFormState= perfumeFormState.copy(meaning = newMeaning) })
 
         if (validationErrors.isNotEmpty()) {
             validationErrors.forEach { error ->
@@ -106,17 +106,17 @@ fun CustomForm(existingPlant: Plant? = null, buttonText: String, onSubmit: (Plan
 
         CustomButton(
             text = buttonText, backgroundColor = Color.Black, onClick = {
-                val newPlant = Plant(
-                    id = existingPlant?.id ?: 0, name = plantFormState.name,
-                    biologicalName = plantFormState.biologicalName,
-                    meaning = plantFormState.meaning,
-                    type = plantFormState.type,
-                    bloomTime = plantFormState.bloomTime
+                val newPerfume = Perfume(
+                    id = existingPerfume?.id ?: 0, name = perfumeFormState.name,
+                    officialName = perfumeFormState.biologicalName,
+                    meaning = perfumeFormState.meaning,
+                    type = perfumeFormState.type,
+                    scentStrength = perfumeFormState.scentStrength
                 )
-                validationErrors = validator.validate(newPlant)
+                validationErrors = validator.validate(newPerfume)
                 if (validationErrors.isEmpty()) {
                     enabled = false
-                    onSubmit(newPlant)
+                    onSubmit(newPerfume)
 
                 }
             }, modifier = Modifier

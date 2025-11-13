@@ -25,6 +25,7 @@ import com.example.app.ui.theme.ryeFontFamily
 @Preview
 @Composable
 fun CustomTextField(
+    includeLabel: Boolean = true,
     placeholder: String="placeholder",
     labelText: String="label",
     value: String="value",
@@ -36,11 +37,12 @@ fun CustomTextField(
 
 
     Column(verticalArrangement = Arrangement.spacedBy(5.dp), modifier = Modifier.fillMaxWidth()) {
-
-//        MediumText20(
-//            text = labelText,
-//            colorText = MaterialTheme.colorScheme.onBackground
-//        )
+        if (includeLabel) {
+            MediumText20(
+                text = labelText,
+                colorText = MaterialTheme.colorScheme.onBackground
+            )
+        }
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
@@ -48,18 +50,18 @@ fun CustomTextField(
             value = value,
             onValueChange = onValueChange,
             placeholder = {
-                SmallText(text = placeholder, colorText = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 5)
+                SmallText(text = placeholder, colorText = Color(0xFF9E88CC), maxLines = 5)
             },
             textStyle = TextStyle(
                 fontFamily = ryeFontFamily,
                 fontSize = 13.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = Color(0xFF3D0075)
             ),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = containerColor,
-                unfocusedContainerColor = containerColor,
-                focusedTextColor = inputTextColor,
-                unfocusedTextColor = inputTextColor,
+                focusedContainerColor = Color(0xFFEDE0FF),
+                unfocusedContainerColor = Color(0xFFEDE0FF),
+                focusedTextColor = Color(0xFF3D0075),
+                unfocusedTextColor = Color(0xFF3D0075),
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent
