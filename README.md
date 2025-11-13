@@ -1,1 +1,91 @@
-# PlantWise
+# Eorume
+
+Eorume is an Android app made for anyone who loves perfumes. Whether you’re a collector, enthusiast, or simply curious about the world of fragrance, Eorume helps you **browse, search, and discover perfumes**.
+
+---
+
+## Key Features
+
+- **Perfume Catalog:** Explore a wide range of perfumes with images and detailed descriptions.  
+- **Search:** Quickly find perfumes by name or brand.  
+- **Advanced Filtering:** Narrow down your search by:
+  - **Scent Strength:** LIGHT, MODERATE, STRONG  
+  - **Fragrance Family:** FLORAL, FRUITY, WOODY, ORIENTAL, FRESH  
+- **Favorites:** Mark perfumes you love.  
+- **Offline-First:** Works completely without internet.  
+- **Modern Architecture:** Uses **MVVM** and **Hilt** 
+- **Smooth UI:**
+
+---
+
+## Design
+
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/69e90fab-fc4b-4927-98d9-6109ce4d7653" alt="Perfume Collection" width="300"><br>
+      <sub>Perfume Collection</sub>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/885fc800-7a0e-40b2-9835-0e2d56899af8" alt="Filter Perfumes" width="300"><br>
+      <sub>Filter Perfumes</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/d736f1be-469b-4c0a-9454-ba2ef6e792ec" alt="Favourite Perfumes" width="300"><br>
+      <sub>Favourite Perfumes</sub>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/e932ccc3-2d9e-486c-bf9e-868cca6bddcb" alt="Add Perfume (Similar with Edit Perfume)" width="300"><br>
+      <sub>Add Perfume  (Similar with Edit Perfume)</sub>
+    </td>
+  </tr>
+  <tr align="center">
+    <td align="center" colspan="2">
+      <img src="https://github.com/user-attachments/assets/e1bfdf29-f3fe-4a36-8737-fccb750524f7" alt="Add Errors" width="300"><br>
+      <sub>Add Related Errors</sub>
+    </td>
+  </tr>
+</table>
+
+---
+
+## Built With
+
+- **Kotlin** — Primary language  
+- **Android Jetpack Components**:  
+  - **Hilt** : dependency injection  
+  - **Room**: offline local storage  
+  - **ViewModel & LiveData / StateFlow**  
+  - **Navigation Component**  
+- **Coroutines** — For asynchronous operations  
+
+---
+
+## Summary
+
+- Implemented MVVM architecture for clear separation of concerns.
+
+- Built offline-capable Room database with robust filtering.
+
+- Integrated Hilt for dependency injection to simplify architecture.
+
+- Developed smooth UI for seamless navigation and user experience.
+
+- Practiced Kotlin coroutines for efficient asynchronous operations.
+
+## Getting Started
+
+### Prerequisites
+
+- Android Studio (latest version)  
+- Kotlin enabled  
+- Android device or emulator  
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/powervnc/Eorume.git
